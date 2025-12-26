@@ -24,7 +24,7 @@ export const HistoryTable = ({ data, isLoading, error }: HistoryTableProps) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">History Data</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">历史数据</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-50">

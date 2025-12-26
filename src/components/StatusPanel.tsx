@@ -24,7 +24,7 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Current Status</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">当前状态</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div>
           <p className="text-gray-500 text-sm">Temperature</p>

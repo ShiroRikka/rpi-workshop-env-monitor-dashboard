@@ -52,7 +52,7 @@ function App() {
     <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-900 mb-6">
-          Environmental Monitor Dashboard
+          车间环境监控仪表板
         </h1>
 
         <StatusPanel
