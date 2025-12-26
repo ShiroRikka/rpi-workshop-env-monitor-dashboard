@@ -227,7 +227,7 @@ export const HistoryChart = ({ data, isLoading, error }: HistoryChartProps) => {
         </ResponsiveContainer>
       </div>
 
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-blue-50/70 backdrop-blur-sm p-4 rounded-lg border border-blue-100/50">
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
@@ -262,6 +262,20 @@ export const HistoryChart = ({ data, isLoading, error }: HistoryChartProps) => {
           </div>
           <div className="text-xs text-purple-500">
             最新值
+          </div>
+        </div>
+        <div className={`${data[data.length - 1].warning_on ? 'bg-red-50/70 border-red-100/50' : 'bg-gray-50/70 border-gray-100/50'} backdrop-blur-sm p-4 rounded-lg border`}>
+          <div className="flex items-center">
+            <div className={`w-3 h-3 rounded-full mr-2 ${data[data.length - 1].warning_on ? 'bg-red-500' : 'bg-gray-400'}`}></div>
+            <span className={`text-sm font-medium ${data[data.length - 1].warning_on ? 'text-red-800' : 'text-gray-800'}`}>警报状态</span>
+          </div>
+          <div className="mt-2 text-2xl font-bold">
+            <span className={data[data.length - 1].warning_on ? 'text-red-600' : 'text-gray-600'}>
+              {data[data.length - 1].warning_on ? '已触发' : '正常'}
+            </span>
+          </div>
+          <div className={`text-xs ${data[data.length - 1].warning_on ? 'text-red-500' : 'text-gray-500'}`}>
+            最新状态
           </div>
         </div>
       </div>

@@ -159,6 +159,9 @@ export const HistoryTable = ({ data, isLoading, error }: HistoryTableProps) => {
               <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                 风扇速度 (%)
               </th>
+              <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                警报状态
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white/50 divide-y divide-gray-100/50">
@@ -227,6 +230,22 @@ export const HistoryTable = ({ data, isLoading, error }: HistoryTableProps) => {
                       {(item.fan_speed * 100).toFixed(0)}
                     </span>
                   </div>
+                </td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <span
+                    className={`inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full transition-all duration-200 ${
+                      item.warning_on
+                        ? "bg-red-100 text-red-800"
+                        : "bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    <span
+                      className={`w-2 h-2 rounded-full mr-1.5 ${
+                        item.warning_on ? "bg-red-500" : "bg-gray-400"
+                      }`}
+                    ></span>
+                    {item.warning_on ? "已触发" : "正常"}
+                  </span>
                 </td>
               </tr>
             ))}

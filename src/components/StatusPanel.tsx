@@ -288,6 +288,40 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
             ></div>
           </div>
         </div>
+
+        <div className="bg-red-50/70 backdrop-blur-sm rounded-lg p-4 border border-red-100/50 transition-all duration-300 hover:shadow-md">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-gray-600 text-sm font-medium">警报状态</p>
+            <svg
+              className="h-5 w-5 text-red-500"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+          </div>
+          <div className="flex items-center">
+            <div
+              className={`w-3 h-3 rounded-full mr-2 ${
+                data.warning_on ? "bg-red-500 animate-pulse" : "bg-gray-400"
+              }`}
+            ></div>
+            <p
+              className={`text-2xl font-bold ${
+                data.warning_on ? "text-red-600" : "text-gray-400"
+              }`}
+            >
+              {data.warning_on ? "已触发" : "正常"}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
