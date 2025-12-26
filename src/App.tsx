@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { StatusPanel } from "./components/StatusPanel";
 import { HistoryTable } from "./components/HistoryTable";
+import { HistoryChart } from "./components/HistoryChart";
 import { fetchStatus, fetchHistory } from "./services/api";
 import type { StatusData, HistoryDataItem } from "./types";
 
@@ -179,11 +180,22 @@ function App() {
           </div>
         </div>
 
-        <HistoryTable
-          data={historyData}
-          isLoading={historyLoading}
-          error={historyError}
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          <div className="lg:col-span-2">
+            <HistoryChart
+              data={historyData}
+              isLoading={historyLoading}
+              error={historyError}
+            />
+          </div>
+          <div className="lg:col-span-1">
+            <HistoryTable
+              data={historyData}
+              isLoading={historyLoading}
+              error={historyError}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
