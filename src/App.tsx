@@ -59,7 +59,7 @@ function App() {
           setHistoryLoading(true);
         }
         setHistoryError(null);
-        const history = await fetchHistory(100); // 获取最近100条
+        const history = await fetchHistory(25); // 获取最近25条
         if (isMounted) {
           setHistoryData(history);
           if (isInitial && !initialHistoryLoaded) {
@@ -95,7 +95,7 @@ function App() {
   }, []); // 依赖数组为空，因为我们只需要在挂载时设置轮询
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-50 via-blue-50 to-indigo-100 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen flowing-gradient-bg p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 mb-6 transition-all duration-500 hover:shadow-2xl">
           <div className="flex items-center">
