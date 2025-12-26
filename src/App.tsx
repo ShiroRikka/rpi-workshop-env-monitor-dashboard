@@ -19,34 +19,79 @@ function App() {
   const [statusError, setStatusError] = useState<string | null>(null);
   const [historyError, setHistoryError] = useState<string | null>(null);
 
-  // 获取数据
+  // 获取数据 - 初始加载 + 轮询
   useEffect(() => {
-    const getData = async () => {
+    let statusIntervalId: number | null = null;
+    let historyIntervalId: number | null = null;
+    let isMounted = true;
+    let initialStatusLoaded = false;
+    let initialHistoryLoaded = false;
+
+    const loadStatus = async (isInitial = false) => {
       try {
-        setStatusLoading(true);
+        if (isInitial && !initialStatusLoaded) {
+          setStatusLoading(true);
+        }
         setStatusError(null);
         const status = await fetchStatus();
-        setStatusData(status);
+        if (isMounted) {
+          setStatusData(status);
+          if (isInitial && !initialStatusLoaded) {
+            initialStatusLoaded = true;
+            setStatusLoading(false);
+          }
+        }
       } catch (e: unknown) {
-        setStatusError(e instanceof Error ? e.message : "未知错误");
-      } finally {
-        setStatusLoading(false);
-      }
-
-      try {
-        setHistoryLoading(true);
-        setHistoryError(null);
-        const history = await fetchHistory(100); // 获取最近100条
-        setHistoryData(history);
-      } catch (e: unknown) {
-        setHistoryError(e instanceof Error ? e.message : "未知错误");
-      } finally {
-        setHistoryLoading(false);
+        if (isMounted) {
+          setStatusError(e instanceof Error ? e.message : "未知错误");
+          if (isInitial && !initialStatusLoaded) {
+            setStatusLoading(false);
+            initialStatusLoaded = true;
+          }
+        }
       }
     };
 
-    getData();
-  }, []); // 空依赖数组表示此 effect 仅在组件首次挂载时运行一次
+    const loadHistory = async (isInitial = false) => {
+      try {
+        if (isInitial && !initialHistoryLoaded) {
+          setHistoryLoading(true);
+        }
+        setHistoryError(null);
+        const history = await fetchHistory(100); // 获取最近100条
+        if (isMounted) {
+          setHistoryData(history);
+          if (isInitial && !initialHistoryLoaded) {
+            initialHistoryLoaded = true;
+            setHistoryLoading(false);
+          }
+        }
+      } catch (e: unknown) {
+        if (isMounted) {
+          setHistoryError(e instanceof Error ? e.message : "未知错误");
+          if (isInitial && !initialHistoryLoaded) {
+            setHistoryLoading(false);
+            initialHistoryLoaded = true;
+          }
+        }
+      }
+    };
+
+    // 初始加载
+    loadStatus(true);
+    loadHistory(true);
+
+    // 设置轮询：状态每3秒，历史每30秒
+    statusIntervalId = window.setInterval(() => loadStatus(false), 3000);
+    historyIntervalId = window.setInterval(() => loadHistory(false), 30000);
+
+    // 清理函数
+    return () => {
+      isMounted = false;
+      if (statusIntervalId !== null) clearInterval(statusIntervalId);
+      if (historyIntervalId !== null) clearInterval(historyIntervalId);
+    };
+  }, []); // 依赖数组为空，因为我们只需要在挂载时设置轮询
 
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 via-blue-50 to-indigo-100 p-4 sm:p-6 lg:p-8">
@@ -120,7 +165,7 @@ function App() {
                 <span className="text-sm font-medium text-blue-800">
                   更新频率
                 </span>
-                <span className="text-sm text-blue-600">每5秒</span>
+                <span className="text-sm text-blue-600">每3秒</span>
               </div>
               <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg border border-purple-100">
                 <span className="text-sm font-medium text-purple-800">
