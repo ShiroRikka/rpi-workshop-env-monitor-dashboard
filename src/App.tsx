@@ -1,37 +1,73 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+// src/App.tsx
+
+import { useState, useEffect } from "react";
+import { StatusPanel } from "./components/StatusPanel";
+import { HistoryTable } from "./components/HistoryTable";
+import { fetchStatus, fetchHistory } from "./services/api";
+import type { StatusData, HistoryDataItem } from "./types";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // 状态数据
+  const [statusData, setStatusData] = useState<StatusData | null>(null);
+  const [historyData, setHistoryData] = useState<HistoryDataItem[] | null>(
+    null
+  );
+
+  // 加载和错误状态
+  const [statusLoading, setStatusLoading] = useState(true);
+  const [historyLoading, setHistoryLoading] = useState(true);
+  const [statusError, setStatusError] = useState<string | null>(null);
+  const [historyError, setHistoryError] = useState<string | null>(null);
+
+  // 获取数据
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setStatusLoading(true);
+        setStatusError(null);
+        const status = await fetchStatus();
+        setStatusData(status);
+      } catch (e: any) {
+        setStatusError(e.message);
+      } finally {
+        setStatusLoading(false);
+      }
+
+      try {
+        setHistoryLoading(true);
+        setHistoryError(null);
+        const history = await fetchHistory(100); // 获取最近100条
+        setHistoryData(history);
+      } catch (e: any) {
+        setHistoryError(e.message);
+      } finally {
+        setHistoryLoading(false);
+      }
+    };
+
+    getData();
+  }, []); // 空依赖数组表示此 effect 仅在组件首次挂载时运行一次
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img
-            src={viteLogo}
-            className="logo"
-            alt="Vite logo"
-          />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-gray-100 p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold text-gray-900 mb-6">
+          Environmental Monitor Dashboard
+        </h1>
+
+        <StatusPanel
+          data={statusData}
+          isLoading={statusLoading}
+          error={statusError}
+        />
+
+        <HistoryTable
+          data={historyData}
+          isLoading={historyLoading}
+          error={historyError}
+        />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
