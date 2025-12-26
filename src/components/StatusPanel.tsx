@@ -100,7 +100,7 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-300 hover:shadow-xl">
+    <div className="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/30 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center mb-6">
         <div className="bg-linear-to-r from-blue-500 to-indigo-600 rounded-lg p-2 mr-3">
           <svg
@@ -122,7 +122,7 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div className="bg-linear-to-br from-orange-50 to-red-50 rounded-lg p-4 border border-orange-100 transition-all duration-300 hover:shadow-md">
+        <div className="bg-orange-50/70 backdrop-blur-sm rounded-lg p-4 border border-orange-100/50 transition-all duration-300 hover:shadow-md">
           <div className="flex items-center justify-between mb-2">
             <p className="text-gray-600 text-sm font-medium">温度</p>
             <svg
@@ -156,7 +156,7 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
           </div>
         </div>
 
-        <div className="bg-linear-to-br from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-100 transition-all duration-300 hover:shadow-md">
+        <div className="bg-blue-50/70 backdrop-blur-sm rounded-lg p-4 border border-blue-100/50 transition-all duration-300 hover:shadow-md">
           <div className="flex items-center justify-between mb-2">
             <p className="text-gray-600 text-sm font-medium">湿度</p>
             <svg
@@ -187,7 +187,7 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
           </div>
         </div>
 
-        <div className="bg-linear-to-br from-gray-50 to-slate-50 rounded-lg p-4 border border-gray-200 transition-all duration-300 hover:shadow-md">
+        <div className="bg-gray-50/70 backdrop-blur-sm rounded-lg p-4 border border-gray-200/50 transition-all duration-300 hover:shadow-md">
           <div className="flex items-center justify-between mb-2">
             <p className="text-gray-600 text-sm font-medium">烟雾水平</p>
             <svg
@@ -226,7 +226,7 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
           </div>
         </div>
 
-        <div className="bg-linear-to-br from-green-50 to-emerald-50 rounded-lg p-4 border border-green-100 transition-all duration-300 hover:shadow-md">
+        <div className="bg-green-50/70 backdrop-blur-sm rounded-lg p-4 border border-green-100/50 transition-all duration-300 hover:shadow-md">
           <div className="flex items-center justify-between mb-2">
             <p className="text-gray-600 text-sm font-medium">风扇状态</p>
             <svg
@@ -260,7 +260,7 @@ export const StatusPanel = ({ data, isLoading, error }: StatusPanelProps) => {
           </div>
         </div>
 
-        <div className="bg-linear-to-br from-purple-50 to-indigo-50 rounded-lg p-4 border border-purple-100 transition-all duration-300 hover:shadow-md">
+        <div className="bg-purple-50/70 backdrop-blur-sm rounded-lg p-4 border border-purple-100/50 transition-all duration-300 hover:shadow-md">
           <div className="flex items-center justify-between mb-2">
             <p className="text-gray-600 text-sm font-medium">风扇速度</p>
             <svg

@@ -113,7 +113,7 @@ export const HistoryChart = ({ data, isLoading, error }: HistoryChartProps) => {
       : chartData;
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mt-6 transition-all duration-300 hover:shadow-xl">
+    <div className="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/30 mt-6 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
           <div className="bg-linear-to-r from-cyan-500 to-teal-600 rounded-lg p-2 mr-3">
@@ -228,7 +228,7 @@ export const HistoryChart = ({ data, isLoading, error }: HistoryChartProps) => {
       </div>
 
       <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+        <div className="bg-blue-50/70 backdrop-blur-sm p-4 rounded-lg border border-blue-100/50">
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
             <span className="text-sm font-medium text-blue-800">温度</span>
@@ -240,7 +240,7 @@ export const HistoryChart = ({ data, isLoading, error }: HistoryChartProps) => {
             最新值
           </div>
         </div>
-        <div className="bg-green-50 p-4 rounded-lg border border-green-100">
+        <div className="bg-green-50/70 backdrop-blur-sm p-4 rounded-lg border border-green-100/50">
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
             <span className="text-sm font-medium text-green-800">湿度</span>
@@ -252,7 +252,7 @@ export const HistoryChart = ({ data, isLoading, error }: HistoryChartProps) => {
             最新值
           </div>
         </div>
-        <div className="bg-purple-50 p-4 rounded-lg border border-purple-100">
+        <div className="bg-purple-50/70 backdrop-blur-sm p-4 rounded-lg border border-purple-100/50">
           <div className="flex items-center">
             <div className="w-3 h-3 rounded-full bg-purple-500 mr-2"></div>
             <span className="text-sm font-medium text-purple-800">烟雾</span>

@@ -97,7 +97,7 @@ function App() {
   return (
     <div className="min-h-screen flowing-gradient-bg p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl p-6 mb-6 transition-all duration-500 hover:shadow-2xl">
+        <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-xl p-6 mb-6 transition-all duration-500 hover:shadow-2xl border border-white/30">
           <div className="flex items-center">
             <div className="bg-linear-to-r from-blue-500 to-indigo-600 rounded-xl p-3 mr-4 shadow-lg">
               <svg
@@ -134,7 +134,7 @@ function App() {
               error={statusError}
             />
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 transition-all duration-300 hover:shadow-xl">
+          <div className="bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-6 border border-white/30 transition-all duration-300 hover:shadow-xl">
             <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
               <svg
                 className="h-5 w-5 text-indigo-500 mr-2"

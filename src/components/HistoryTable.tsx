@@ -113,7 +113,7 @@ export const HistoryTable = ({ data, isLoading, error }: HistoryTableProps) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 mt-6 transition-all duration-300 hover:shadow-xl">
+    <div className="bg-white/70 backdrop-blur-md p-6 rounded-xl shadow-lg border border-white/30 mt-6 transition-all duration-300 hover:shadow-xl">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center">
           <div className="bg-linear-to-r from-purple-500 to-pink-600 rounded-lg p-2 mr-3">
@@ -139,7 +139,7 @@ export const HistoryTable = ({ data, isLoading, error }: HistoryTableProps) => {
 
       <div className="overflow-x-auto rounded-lg border border-gray-200">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-linear-to-r from-gray-50 to-slate-50">
+          <thead className="bg-gray-50/70 backdrop-blur-sm">
             <tr>
               <th className="px-6 py-4 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
                 时间戳
@@ -161,12 +161,12 @@ export const HistoryTable = ({ data, isLoading, error }: HistoryTableProps) => {
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-100">
+          <tbody className="bg-white/50 divide-y divide-gray-100/50">
             {data.map((item, index) => (
               <tr
                 key={item.id}
-                className={`transition-all duration-200 hover:bg-gray-50 ${
-                  index % 2 === 0 ? "bg-white" : "bg-gray-50/30"
+                className={`transition-all duration-200 hover:bg-gray-50/50 ${
+                  index % 2 === 0 ? "bg-white/30" : "bg-gray-50/40"
                 }`}
               >
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 font-medium">
