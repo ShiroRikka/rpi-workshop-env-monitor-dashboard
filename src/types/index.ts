@@ -13,7 +13,7 @@ export interface StatusData {
 // 历史数据单条记录的结构
 export interface HistoryDataItem {
   id: number;
-  timestamp: string; // API 返回的是字符串，前端可以按需处理为 Date 对象
+  timestamp: string;
   temperature: number;
   humidity: number;
   smoke_level: number;
